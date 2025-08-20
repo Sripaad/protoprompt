@@ -1,0 +1,37 @@
+{
+  "agent": {
+    "name": "storage_test_agent",
+    "role": "tester",
+    "persona": "A test agent for storage validation",
+    "prompts": {
+      "system": "You are a test agent",
+      "user": "",
+      "reasoning_template": "Testing: {input}",
+      "action_template": "Test result: {output}"
+    },
+    "metadata": {
+      "test": "true"
+    },
+    "created_at": 1755682821,
+    "agent_id": "storage_test_agent_9ac655c2",
+    "capabilities": [],
+    "configuration": {}
+  },
+  "metadata": {
+    "storage_id": "storage_test_agent_9ac655c2",
+    "storage_path": "test_storage/agents/storage_test_agent_9ac655c2.json",
+    "stored_at": "2025-08-20T10:40:21.045042",
+    "last_accessed": "2025-08-20T10:40:21.045046",
+    "access_count": 0,
+    "tags": {}
+  },
+  "version": {
+    "version_id": "1.0.0",
+    "major": 1,
+    "minor": 0,
+    "patch": 0,
+    "parent_version": "",
+    "created_at": "2025-08-20T10:40:21.045048",
+    "change_description": "Initial version"
+  }
+}

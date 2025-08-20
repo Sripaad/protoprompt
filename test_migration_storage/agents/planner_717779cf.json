@@ -1,0 +1,37 @@
+{
+  "agent": {
+    "name": "planner",
+    "role": "planner",
+    "persona": "A methodical planner who creates detailed execution plans",
+    "prompts": {
+      "system": "You are a project planner. Create detailed, executable plans.",
+      "user": "",
+      "reasoning_template": "To accomplish: {input}\nI need to plan the following steps...",
+      "action_template": "Here's the detailed plan: {plan}"
+    },
+    "metadata": {},
+    "created_at": 1755682821,
+    "agent_id": "planner_717779cf",
+    "capabilities": [
+      "plan"
+    ],
+    "configuration": {}
+  },
+  "metadata": {
+    "storage_id": "planner_717779cf",
+    "storage_path": "test_migration_storage/agents/planner_717779cf.json",
+    "stored_at": "2025-08-20T10:40:21.059158",
+    "last_accessed": "2025-08-20T10:40:21.059160",
+    "access_count": 0,
+    "tags": {}
+  },
+  "version": {
+    "version_id": "1.0.0",
+    "major": 1,
+    "minor": 0,
+    "patch": 0,
+    "parent_version": "",
+    "created_at": "2025-08-20T10:40:21.059161",
+    "change_description": "Initial version"
+  }
+}

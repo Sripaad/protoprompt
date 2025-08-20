@@ -1,0 +1,29 @@
+{
+  "version_id": "v_researcher_001_d0f06509_1_1_0",
+  "storage_id": "researcher_001_d0f06509",
+  "version": "1.1.0",
+  "agent_data": {
+    "name": "researcher_001",
+    "role": "researcher",
+    "persona": "Expert at finding information",
+    "prompts": {
+      "system": "You are a research specialist. Gather comprehensive information and provide detailed analysis.",
+      "user": "",
+      "reasoning_template": "Research query: {input}\nLet me gather and analyze relevant information...",
+      "action_template": "Based on my research: {findings}"
+    },
+    "metadata": {},
+    "created_at": 1755682790,
+    "agent_id": "researcher_001_d0f06509",
+    "capabilities": [
+      "search",
+      "analyze",
+      "summarize"
+    ],
+    "configuration": {
+      "max_search_results": "10"
+    }
+  },
+  "changes": "Enhanced search capabilities",
+  "created_at": "2025-08-20T10:39:50.527103"
+}

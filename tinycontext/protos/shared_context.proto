@@ -1,0 +1,119 @@
+syntax = "proto3";
+
+package tinycontext.protos;
+
+import "google/protobuf/timestamp.proto";
+
+// Shared context for agent collaboration
+message SharedContext {
+  // Unique identifier for this context
+  string context_id = 1;
+  
+  // Global state accessible by all agents
+  map<string, string> global_state = 2;
+  
+  // Message history
+  repeated Message messages = 3;
+  
+  // Per-agent memory storage
+  map<string, AgentMemory> agent_memories = 4;
+  
+  // Context metadata
+  google.protobuf.Timestamp created_at = 5;
+  google.protobuf.Timestamp updated_at = 6;
+  
+  // Episode ID for TensorZero tracking
+  string episode_id = 7;
+  
+  // Context configuration
+  ContextConfig config = 8;
+}
+
+// Message passed between agents
+message Message {
+  string agent_name = 1;
+  string content = 2;
+  MessageType type = 3;
+  google.protobuf.Timestamp timestamp = 4;
+  map<string, string> metadata = 5;
+}
+
+// Message types
+enum MessageType {
+  MESSAGE_TYPE_UNSPECIFIED = 0;
+  BROADCAST = 1;
+  DIRECT = 2;
+  SYSTEM = 3;
+  HANDOFF = 4;
+  ERROR = 5;
+}
+
+// Agent-specific memory
+message AgentMemory {
+  string agent_name = 1;
+  
+  // Working memory (key-value pairs)
+  map<string, string> working_memory = 2;
+  
+  // Agent capabilities
+  repeated string capabilities = 3;
+  
+  // Current state
+  AgentState state = 4;
+  
+  // Reasoning history
+  repeated ReasoningStep reasoning_history = 5;
+  
+  // Action history
+  repeated ActionRecord action_history = 6;
+}
+
+// Agent state snapshot
+message AgentState {
+  string state_name = 1;
+  map<string, string> state_data = 2;
+  google.protobuf.Timestamp last_updated = 3;
+}
+
+// Reasoning step record
+message ReasoningStep {
+  string input = 1;
+  string reasoning = 2;
+  string output = 3;
+  google.protobuf.Timestamp timestamp = 4;
+}
+
+// Action execution record
+message ActionRecord {
+  string action_type = 1;
+  string action_data = 2;
+  string result = 3;
+  bool success = 4;
+  google.protobuf.Timestamp timestamp = 5;
+}
+
+// Context configuration
+message ContextConfig {
+  // Maximum message history size
+  int32 max_messages = 1;
+  
+  // Enable persistence
+  bool persist_enabled = 2;
+  
+  // Persistence path
+  string persist_path = 3;
+  
+  // Auto-save interval in seconds
+  int32 auto_save_interval = 4;
+  
+  // Memory limits per agent
+  int32 max_memory_per_agent = 5;
+}
+
+// Context snapshot for persistence
+message ContextSnapshot {
+  SharedContext context = 1;
+  string snapshot_id = 2;
+  google.protobuf.Timestamp created_at = 3;
+  map<string, string> metadata = 4;
+}

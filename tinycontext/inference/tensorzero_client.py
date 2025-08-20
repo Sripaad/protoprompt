@@ -47,7 +47,8 @@ class AsyncTensorZeroClient:
         self.function_models = {
             "tiny_reasoning": self.default_model,
             "tiny_action": self.default_model,
-            "agent_selection": self.default_model
+            "agent_selection": self.default_model,
+            "tiny_search": self.default_model  # Search function
         }
     
     async def initialize(self) -> None:
@@ -91,12 +92,13 @@ class AsyncTensorZeroClient:
             print("   Using simulation mode")
             self.initialized = True
     
-    async def call(self, function_name: str, **kwargs) -> str:
+    async def call(self, function_name: str, episode_id: Optional[str] = None, **kwargs) -> str:
         """
         Call a TensorZero function asynchronously.
         
         Args:
             function_name: Name of the function to call
+            episode_id: Optional episode ID for grouping related inferences
             **kwargs: Function arguments
             
         Returns:
@@ -108,7 +110,7 @@ class AsyncTensorZeroClient:
         # Use real TensorZero if available
         if self.gateway:
             try:
-                result = await self._call_tensorzero(function_name, **kwargs)
+                result = await self._call_tensorzero(function_name, episode_id=episode_id, **kwargs)
                 print(f"✓ TensorZero call successful for {function_name}")
                 return result
             except Exception as e:
@@ -143,12 +145,13 @@ class AsyncTensorZeroClient:
         responses = await asyncio.gather(*tasks)
         return responses
     
-    async def _call_tensorzero(self, function_name: str, **kwargs) -> str:
+    async def _call_tensorzero(self, function_name: str, episode_id: Optional[str] = None, **kwargs) -> str:
         """
         Make actual TensorZero API call.
         
         Args:
             function_name: Function to call
+            episode_id: Optional episode ID for grouping inferences
             **kwargs: Function arguments
             
         Returns:
@@ -163,6 +166,8 @@ class AsyncTensorZeroClient:
             prompt = self._build_action_prompt(**kwargs)
         elif function_name == "agent_selection":
             prompt = self._build_selection_prompt(**kwargs)
+        elif function_name == "tiny_search":
+            prompt = self._build_search_prompt(**kwargs)
         else:
             prompt = kwargs.get("prompt", "")
         
@@ -192,11 +197,17 @@ class AsyncTensorZeroClient:
                 ]
             }
         
-        # Make inference request using function_name
-        response = await self.gateway.inference(
-            function_name=function_name,
-            input=input_data
-        )
+        # Make inference request using function_name with episode tracking
+        inference_params = {
+            "function_name": function_name,
+            "input": input_data
+        }
+        
+        # Add episode_id if provided for observability
+        if episode_id:
+            inference_params["episode_id"] = episode_id
+        
+        response = await self.gateway.inference(**inference_params)
         
         # Extract text from response
         # TensorZero returns a ChatModelInferenceResponse with content field
@@ -264,6 +275,41 @@ Available agents: {agent_list}
 
 Which agent is best suited for this task? Return only the agent role."""
     
+    def _build_search_prompt(self, **kwargs) -> str:
+        """Build search prompt."""
+        query = kwargs.get("query", "")
+        context = kwargs.get("context", "")
+        search_type = kwargs.get("search_type", "general")
+        
+        if search_type == "web":
+            return f"""Search the web for information about: {query}
+Context: {context}
+
+Provide comprehensive, factual information with sources when possible.
+Focus on recent and relevant information."""
+        
+        elif search_type == "code":
+            return f"""Search for code examples and technical documentation about: {query}
+Context: {context}
+
+Provide working code examples, best practices, and implementation details.
+Include relevant documentation references."""
+        
+        elif search_type == "research":
+            return f"""Conduct research on: {query}
+Context: {context}
+
+Provide in-depth analysis with multiple perspectives.
+Include relevant studies, papers, or authoritative sources.
+Synthesize findings into actionable insights."""
+        
+        else:  # general search
+            return f"""Search for information about: {query}
+Context: {context}
+
+Provide accurate, relevant, and comprehensive information.
+Structure the response clearly and include key findings."""
+    
     async def _simulate_response(self, function_name: str, **kwargs) -> str:
         """
         Simulate LLM response for fallback.
@@ -315,6 +361,21 @@ This task aligns with my {agent_role} capabilities."""
                 return "planner"
             else:
                 return "assistant"
+        
+        elif function_name == "tiny_search":
+            query = kwargs.get("query", "")
+            search_type = kwargs.get("search_type", "general")
+            
+            return f"""Search Results for: {query}
+Type: {search_type}
+
+[Simulated Search Results]
+1. Found relevant information about {query}
+2. Key findings indicate multiple aspects to consider
+3. Recent developments show progress in this area
+4. Expert opinions suggest careful evaluation needed
+
+This is a simulated search response. In production, this would return actual search results."""
         
         return "Completed processing."
     

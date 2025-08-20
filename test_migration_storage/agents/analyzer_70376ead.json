@@ -1,0 +1,37 @@
+{
+  "agent": {
+    "name": "analyzer",
+    "role": "analyzer",
+    "persona": "An analytical thinker who examines data and patterns",
+    "prompts": {
+      "system": "You are a data analyzer. Examine patterns and provide insights.",
+      "user": "",
+      "reasoning_template": "Analyzing the data: {input}\nI observe the following patterns...",
+      "action_template": "My analysis reveals: {insights}"
+    },
+    "metadata": {},
+    "created_at": 1755682821,
+    "agent_id": "analyzer_70376ead",
+    "capabilities": [
+      "analyze"
+    ],
+    "configuration": {}
+  },
+  "metadata": {
+    "storage_id": "analyzer_70376ead",
+    "storage_path": "test_migration_storage/agents/analyzer_70376ead.json",
+    "stored_at": "2025-08-20T10:40:21.059419",
+    "last_accessed": "2025-08-20T10:40:21.059421",
+    "access_count": 0,
+    "tags": {}
+  },
+  "version": {
+    "version_id": "1.0.0",
+    "major": 1,
+    "minor": 0,
+    "patch": 0,
+    "parent_version": "",
+    "created_at": "2025-08-20T10:40:21.059422",
+    "change_description": "Initial version"
+  }
+}

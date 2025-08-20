@@ -1,0 +1,129 @@
+{
+  "context_id": "data_analysis_project",
+  "episode_id": "episode_integration_001",
+  "global_state": {
+    "analysis_status": "completed",
+    "key_finding": "15% growth"
+  },
+  "messages": [
+    {
+      "agent_name": "system",
+      "content": "Agent data_collector joined context",
+      "type": "broadcast",
+      "timestamp": "2025-08-20T10:46:08.869175",
+      "metadata": {
+        "agent_role": "collector"
+      }
+    },
+    {
+      "agent_name": "system",
+      "content": "Agent data_analyst joined context",
+      "type": "broadcast",
+      "timestamp": "2025-08-20T10:46:08.870260",
+      "metadata": {
+        "agent_role": "analyst"
+      }
+    },
+    {
+      "agent_name": "system",
+      "content": "Agent report_writer joined context",
+      "type": "broadcast",
+      "timestamp": "2025-08-20T10:46:08.870956",
+      "metadata": {
+        "agent_role": "writer"
+      }
+    },
+    {
+      "agent_name": "data_collector",
+      "content": "Starting data collection for Q4 analysis",
+      "type": "broadcast",
+      "timestamp": "2025-08-20T10:46:08.871806",
+      "metadata": {}
+    },
+    {
+      "agent_name": "data_collector",
+      "content": "Handing off task to data_analyst: Analyze Q4 sales data",
+      "type": "handoff",
+      "timestamp": "2025-08-20T10:46:08.872537",
+      "metadata": {
+        "to": "data_analyst",
+        "task": "Analyze Q4 sales data",
+        "context": "{\"data_location\": \"/data/q4_sales.csv\", \"metrics\": [\"revenue\", \"growth\", \"churn\"]}"
+      }
+    },
+    {
+      "agent_name": "data_analyst",
+      "content": "Found 15% revenue growth with 2% churn reduction",
+      "type": "broadcast",
+      "timestamp": "2025-08-20T10:46:08.873315",
+      "metadata": {}
+    },
+    {
+      "agent_name": "data_analyst",
+      "content": "Handing off task to report_writer: Create executive summary",
+      "type": "handoff",
+      "timestamp": "2025-08-20T10:46:08.875441",
+      "metadata": {
+        "to": "report_writer",
+        "task": "Create executive summary",
+        "context": "{\"findings\": \"15% growth, 2% churn reduction\", \"charts\": [\"revenue_trend.png\", \"churn_analysis.png\"]}"
+      }
+    },
+    {
+      "agent_name": "report_writer",
+      "content": "Executive summary completed and ready for review",
+      "type": "broadcast",
+      "timestamp": "2025-08-20T10:46:08.876017",
+      "metadata": {}
+    }
+  ],
+  "agent_memories": {
+    "data_collector": {
+      "working_memory": {
+        "collected_sources": "sales_db,customer_api,market_web"
+      },
+      "capabilities": [],
+      "state": {},
+      "reasoning_history": [],
+      "action_history": [
+        {
+          "action_type": "handoff",
+          "action_data": "to:data_analyst",
+          "result": "task:Analyze Q4 sales data",
+          "success": true,
+          "timestamp": "2025-08-20T10:46:08.873261"
+        }
+      ]
+    },
+    "data_analyst": {
+      "working_memory": {
+        "handoff_task": "Analyze Q4 sales data",
+        "handoff_context": "{\"data_location\": \"/data/q4_sales.csv\", \"metrics\": [\"revenue\", \"growth\", \"churn\"]}"
+      },
+      "capabilities": [],
+      "state": {},
+      "reasoning_history": [],
+      "action_history": [
+        {
+          "action_type": "handoff",
+          "action_data": "to:report_writer",
+          "result": "task:Create executive summary",
+          "success": true,
+          "timestamp": "2025-08-20T10:46:08.875988"
+        }
+      ]
+    },
+    "report_writer": {
+      "working_memory": {
+        "handoff_task": "Create executive summary",
+        "handoff_context": "{\"findings\": \"15% growth, 2% churn reduction\", \"charts\": [\"revenue_trend.png\", \"churn_analysis.png\"]}"
+      },
+      "capabilities": [],
+      "state": {},
+      "reasoning_history": [],
+      "action_history": []
+    }
+  },
+  "created_at": "2025-08-20T10:46:08.869130",
+  "updated_at": "2025-08-20T10:46:08.876019"
+}

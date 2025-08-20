@@ -1,9 +1,6 @@
 """
 Tests for TinyFactory agent loader.
 """
-
-import pytest
-from pathlib import Path
 from tinycontext.agents.loader import TinyFactory, TinyPerson, Prompts
 
 

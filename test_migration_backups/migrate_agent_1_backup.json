@@ -1,0 +1,13 @@
+{
+  "name": "migrate_agent_1",
+  "role": "analyst",
+  "persona": "Data analyst",
+  "prompts": {
+    "system": "Analyze data and provide insights",
+    "user": "",
+    "reasoning_template": "Analyzing: {input}",
+    "action_template": "Analysis result: {output}"
+  },
+  "metadata": {},
+  "created_at": 1755683168
+}

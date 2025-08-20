@@ -1,0 +1,35 @@
+{
+  "agent": {
+    "name": "developer",
+    "role": "coder",
+    "persona": "Implements features",
+    "prompts": {
+      "system": "",
+      "user": "",
+      "reasoning_template": "",
+      "action_template": ""
+    },
+    "metadata": {},
+    "created_at": 1755682821,
+    "agent_id": "developer_1982c0c3",
+    "capabilities": [],
+    "configuration": {}
+  },
+  "metadata": {
+    "storage_id": "developer_1982c0c3",
+    "storage_path": "test_context_storage/agents/developer_1982c0c3.json",
+    "stored_at": "2025-08-20T10:40:21.055560",
+    "last_accessed": "2025-08-20T10:40:21.055563",
+    "access_count": 0,
+    "tags": {}
+  },
+  "version": {
+    "version_id": "1.0.0",
+    "major": 1,
+    "minor": 0,
+    "patch": 0,
+    "parent_version": "",
+    "created_at": "2025-08-20T10:40:21.055564",
+    "change_description": "Initial version"
+  }
+}

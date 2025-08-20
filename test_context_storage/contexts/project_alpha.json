@@ -1,0 +1,83 @@
+{
+  "context_id": "project_alpha",
+  "episode_id": null,
+  "global_state": {},
+  "messages": [
+    {
+      "agent_name": "system",
+      "content": "Agent coordinator joined context",
+      "type": "broadcast",
+      "timestamp": "2025-08-20T10:46:08.846632",
+      "metadata": {
+        "agent_role": "manager"
+      }
+    },
+    {
+      "agent_name": "system",
+      "content": "Agent developer joined context",
+      "type": "broadcast",
+      "timestamp": "2025-08-20T10:46:08.858346",
+      "metadata": {
+        "agent_role": "coder"
+      }
+    },
+    {
+      "agent_name": "coordinator",
+      "content": "Handing off task to developer: Implement new feature",
+      "type": "handoff",
+      "timestamp": "2025-08-20T10:46:08.862022",
+      "metadata": {
+        "to": "developer",
+        "task": "Implement new feature",
+        "context": "{\"task\": \"Implement new feature\", \"from_agent\": \"coordinator\", \"from_context\": \"project_alpha\", \"state\": {}, \"working_memory\": {}}"
+      }
+    },
+    {
+      "agent_name": "system",
+      "content": "Test broadcast message",
+      "type": "broadcast",
+      "timestamp": "2025-08-20T10:46:08.864438",
+      "metadata": {}
+    }
+  ],
+  "agent_memories": {
+    "coordinator": {
+      "working_memory": {
+        "current_priority": "feature_implementation"
+      },
+      "capabilities": [
+        "coordinate",
+        "plan"
+      ],
+      "state": {
+        "status": "active",
+        "task_count": 3
+      },
+      "reasoning_history": [],
+      "action_history": [
+        {
+          "action_type": "handoff",
+          "action_data": "to:developer",
+          "result": "task:Implement new feature",
+          "success": true,
+          "timestamp": "2025-08-20T10:46:08.862993"
+        }
+      ]
+    },
+    "developer": {
+      "working_memory": {
+        "handoff_task": "Implement new feature",
+        "handoff_context": "{\"task\": \"Implement new feature\", \"from_agent\": \"coordinator\", \"from_context\": \"project_alpha\", \"state\": {}, \"working_memory\": {}}"
+      },
+      "capabilities": [
+        "code",
+        "test"
+      ],
+      "state": {},
+      "reasoning_history": [],
+      "action_history": []
+    }
+  },
+  "created_at": "2025-08-20T10:46:08.846594",
+  "updated_at": "2025-08-20T10:46:08.864440"
+}

@@ -1,0 +1,41 @@
+{
+  "agent": {
+    "name": "data_analyst",
+    "role": "analyst",
+    "persona": "Analyzes data and finds patterns",
+    "prompts": {
+      "system": "",
+      "user": "",
+      "reasoning_template": "",
+      "action_template": ""
+    },
+    "metadata": {},
+    "created_at": 1755682821,
+    "agent_id": "data_analyst_9b815fad",
+    "capabilities": [
+      "analyze",
+      "visualize",
+      "report"
+    ],
+    "configuration": {
+      "tools": "pandas,numpy,matplotlib"
+    }
+  },
+  "metadata": {
+    "storage_id": "data_analyst_9b815fad",
+    "storage_path": "test_integration_storage/agents/data_analyst_9b815fad.json",
+    "stored_at": "2025-08-20T10:40:21.066234",
+    "last_accessed": "2025-08-20T10:40:21.066235",
+    "access_count": 0,
+    "tags": {}
+  },
+  "version": {
+    "version_id": "1.0.0",
+    "major": 1,
+    "minor": 0,
+    "patch": 0,
+    "parent_version": "",
+    "created_at": "2025-08-20T10:40:21.066237",
+    "change_description": "Initial version"
+  }
+}

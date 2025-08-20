@@ -1,0 +1,77 @@
+{
+  "summary": {
+    "total": 5,
+    "successful": 5,
+    "failed": 0,
+    "results": [
+      {
+        "agent_name": "strategist",
+        "success": true,
+        "storage_id": "strategist_e24727bb",
+        "errors": []
+      },
+      {
+        "agent_name": "planner",
+        "success": true,
+        "storage_id": "planner_ff0eb5f0",
+        "errors": []
+      },
+      {
+        "agent_name": "analyzer",
+        "success": true,
+        "storage_id": "analyzer_2b9b38da",
+        "errors": []
+      },
+      {
+        "agent_name": "migrate_agent_1",
+        "success": true,
+        "storage_id": "migrate_agent_1_0dddee03",
+        "errors": []
+      },
+      {
+        "agent_name": "migrate_agent_2",
+        "success": true,
+        "storage_id": "migrate_agent_2_b512c0e6",
+        "errors": []
+      }
+    ]
+  },
+  "log": [
+    {
+      "agent_name": "migrate_agent_1",
+      "storage_id": "migrate_agent_1_87fa84cb",
+      "backup_path": "test_migration_backups/migrate_agent_1_backup.json",
+      "timestamp": "{\"timestamp\": \"now\"}"
+    },
+    {
+      "agent_name": "strategist",
+      "storage_id": "strategist_e24727bb",
+      "backup_path": "test_migration_backups/strategist_backup.json",
+      "timestamp": "{\"timestamp\": \"now\"}"
+    },
+    {
+      "agent_name": "planner",
+      "storage_id": "planner_ff0eb5f0",
+      "backup_path": "test_migration_backups/planner_backup.json",
+      "timestamp": "{\"timestamp\": \"now\"}"
+    },
+    {
+      "agent_name": "analyzer",
+      "storage_id": "analyzer_2b9b38da",
+      "backup_path": "test_migration_backups/analyzer_backup.json",
+      "timestamp": "{\"timestamp\": \"now\"}"
+    },
+    {
+      "agent_name": "migrate_agent_1",
+      "storage_id": "migrate_agent_1_0dddee03",
+      "backup_path": "test_migration_backups/migrate_agent_1_backup.json",
+      "timestamp": "{\"timestamp\": \"now\"}"
+    },
+    {
+      "agent_name": "migrate_agent_2",
+      "storage_id": "migrate_agent_2_b512c0e6",
+      "backup_path": "test_migration_backups/migrate_agent_2_backup.json",
+      "timestamp": "{\"timestamp\": \"now\"}"
+    }
+  ]
+}

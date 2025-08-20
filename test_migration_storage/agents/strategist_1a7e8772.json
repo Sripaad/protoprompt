@@ -1,0 +1,35 @@
+{
+  "agent": {
+    "name": "strategist",
+    "role": "strategist",
+    "persona": "A strategic thinker who breaks down complex problems into manageable steps",
+    "prompts": {
+      "system": "You are a strategic analyst. Break down problems into clear, actionable steps.",
+      "user": "",
+      "reasoning_template": "Given the problem: {input}\nLet me analyze this step by step...",
+      "action_template": "Based on my analysis, the next action should be: {action}"
+    },
+    "metadata": {},
+    "created_at": 1755682821,
+    "agent_id": "strategist_1a7e8772",
+    "capabilities": [],
+    "configuration": {}
+  },
+  "metadata": {
+    "storage_id": "strategist_1a7e8772",
+    "storage_path": "test_migration_storage/agents/strategist_1a7e8772.json",
+    "stored_at": "2025-08-20T10:40:21.058895",
+    "last_accessed": "2025-08-20T10:40:21.058897",
+    "access_count": 0,
+    "tags": {}
+  },
+  "version": {
+    "version_id": "1.0.0",
+    "major": 1,
+    "minor": 0,
+    "patch": 0,
+    "parent_version": "",
+    "created_at": "2025-08-20T10:40:21.058898",
+    "change_description": "Initial version"
+  }
+}

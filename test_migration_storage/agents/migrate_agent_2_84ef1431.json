@@ -1,0 +1,35 @@
+{
+  "agent": {
+    "name": "migrate_agent_2",
+    "role": "writer",
+    "persona": "Content writer",
+    "prompts": {
+      "system": "Write clear and engaging content",
+      "user": "",
+      "reasoning_template": "Writing about: {input}",
+      "action_template": "Content: {output}"
+    },
+    "metadata": {},
+    "created_at": 1755682821,
+    "agent_id": "migrate_agent_2_84ef1431",
+    "capabilities": [],
+    "configuration": {}
+  },
+  "metadata": {
+    "storage_id": "migrate_agent_2_84ef1431",
+    "storage_path": "test_migration_storage/agents/migrate_agent_2_84ef1431.json",
+    "stored_at": "2025-08-20T10:40:21.059948",
+    "last_accessed": "2025-08-20T10:40:21.059949",
+    "access_count": 0,
+    "tags": {}
+  },
+  "version": {
+    "version_id": "1.0.0",
+    "major": 1,
+    "minor": 0,
+    "patch": 0,
+    "parent_version": "",
+    "created_at": "2025-08-20T10:40:21.059951",
+    "change_description": "Initial version"
+  }
+}

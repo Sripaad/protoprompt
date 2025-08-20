@@ -35,7 +35,7 @@ class AsyncReActLoop:
         self.current_agents: Dict[str, TinyPerson] = {}
         self.contexts: Dict[str, Dict[str, Any]] = {}
     
-    async def reason(self, agent: TinyPerson, input_text: str, context: Dict[str, Any] = None) -> str:
+    async def reason(self, agent: TinyPerson, input_text: str, context: Dict[str, Any] = None, episode_id: Optional[str] = None) -> str:
         """
         Async reasoning phase - analyze input and determine approach.
         
@@ -61,6 +61,7 @@ class AsyncReActLoop:
         try:
             response = await self.llm_client.call(
                 function_name="tiny_reasoning",
+                episode_id=episode_id,
                 input_text=prompt,
                 agent_role=agent.role,
                 system_prompt=agent.prompts.system
@@ -69,7 +70,7 @@ class AsyncReActLoop:
         except Exception as e:
             return f"Reasoning error: {e}"
     
-    async def act(self, agent: TinyPerson, reasoning: str) -> Tuple[str, Optional[str]]:
+    async def act(self, agent: TinyPerson, reasoning: str, episode_id: Optional[str] = None) -> Tuple[str, Optional[str]]:
         """
         Async action phase - determine and format action based on reasoning.
         
@@ -91,6 +92,7 @@ class AsyncReActLoop:
         try:
             response = await self.llm_client.call(
                 function_name="tiny_action",
+                episode_id=episode_id,
                 reasoning=reasoning,
                 agent_role=agent.role,
                 system_prompt=agent.prompts.system
@@ -103,7 +105,7 @@ class AsyncReActLoop:
         except Exception as e:
             return f"Action error: {e}", None
     
-    async def execute_step(self, agent: TinyPerson, input_text: str, context: Dict[str, Any] = None) -> ReActStep:
+    async def execute_step(self, agent: TinyPerson, input_text: str, context: Dict[str, Any] = None, episode_id: Optional[str] = None) -> ReActStep:
         """
         Execute a complete async ReAct step.
         
@@ -116,10 +118,10 @@ class AsyncReActLoop:
             ReActStep with reasoning and action
         """
         # Async reasoning phase
-        reasoning = await self.reason(agent, input_text, context)
+        reasoning = await self.reason(agent, input_text, context, episode_id)
         
         # Async action phase
-        action, handoff = await self.act(agent, reasoning)
+        action, handoff = await self.act(agent, reasoning, episode_id)
         
         # Create step record
         step = ReActStep(

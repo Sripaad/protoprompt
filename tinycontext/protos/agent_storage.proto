@@ -1,0 +1,119 @@
+syntax = "proto3";
+
+package tinycontext.protos;
+
+import "google/protobuf/timestamp.proto";
+
+// Storage format for TinyPerson agents
+message StoredAgent {
+  // Agent definition
+  TinyPerson agent = 1;
+  
+  // Storage metadata
+  StorageMetadata metadata = 2;
+  
+  // Version information
+  VersionInfo version = 3;
+  
+  // Agent snapshot data
+  AgentSnapshot snapshot = 4;
+}
+
+// Core TinyPerson definition (extended from existing)
+message TinyPerson {
+  // Unique identifier for the agent
+  string name = 1;
+  
+  // Functional role
+  string role = 2;
+  
+  // Personality description
+  string persona = 3;
+  
+  // Prompt configuration
+  Prompts prompts = 4;
+  
+  // Metadata
+  map<string, string> metadata = 5;
+  
+  // Creation timestamp
+  int64 created_at = 6;
+  
+  // Additional fields for storage
+  string agent_id = 7;
+  repeated string capabilities = 8;
+  map<string, string> configuration = 9;
+}
+
+// Prompt templates
+message Prompts {
+  string system = 1;
+  string user = 2;
+  string reasoning_template = 3;
+  string action_template = 4;
+}
+
+// Storage metadata
+message StorageMetadata {
+  string storage_id = 1;
+  string storage_path = 2;
+  google.protobuf.Timestamp stored_at = 3;
+  google.protobuf.Timestamp last_accessed = 4;
+  int64 access_count = 5;
+  map<string, string> tags = 6;
+}
+
+// Version information
+message VersionInfo {
+  string version_id = 1;
+  int32 major = 2;
+  int32 minor = 3;
+  int32 patch = 4;
+  string parent_version = 5;
+  google.protobuf.Timestamp created_at = 6;
+  string change_description = 7;
+}
+
+// Agent snapshot
+message AgentSnapshot {
+  // Snapshot identifier
+  string snapshot_id = 1;
+  
+  // Agent state at snapshot time
+  map<string, string> state = 2;
+  
+  // Memory at snapshot time
+  map<string, string> memory = 3;
+  
+  // Execution statistics
+  ExecutionStats stats = 4;
+  
+  // Snapshot timestamp
+  google.protobuf.Timestamp created_at = 5;
+}
+
+// Execution statistics
+message ExecutionStats {
+  int64 total_executions = 1;
+  int64 successful_executions = 2;
+  int64 failed_executions = 3;
+  int64 handoffs_initiated = 4;
+  int64 handoffs_received = 5;
+  double average_execution_time_ms = 6;
+  google.protobuf.Timestamp last_execution = 7;
+}
+
+// Agent collection for bulk operations
+message AgentCollection {
+  repeated StoredAgent agents = 1;
+  CollectionMetadata metadata = 2;
+}
+
+// Collection metadata
+message CollectionMetadata {
+  string collection_id = 1;
+  string collection_name = 2;
+  google.protobuf.Timestamp created_at = 3;
+  google.protobuf.Timestamp updated_at = 4;
+  int32 agent_count = 5;
+}

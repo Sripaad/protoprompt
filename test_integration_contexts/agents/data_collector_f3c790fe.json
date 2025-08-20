@@ -1,0 +1,41 @@
+{
+  "agent": {
+    "name": "data_collector",
+    "role": "collector",
+    "persona": "Gathers data from various sources",
+    "prompts": {
+      "system": "",
+      "user": "",
+      "reasoning_template": "",
+      "action_template": ""
+    },
+    "metadata": {},
+    "created_at": 1755682821,
+    "agent_id": "data_collector_f3c790fe",
+    "capabilities": [
+      "search",
+      "extract",
+      "validate"
+    ],
+    "configuration": {
+      "sources": "web,database,api"
+    }
+  },
+  "metadata": {
+    "storage_id": "data_collector_f3c790fe",
+    "storage_path": "test_integration_contexts/agents/data_collector_f3c790fe.json",
+    "stored_at": "2025-08-20T10:40:21.061391",
+    "last_accessed": "2025-08-20T10:40:21.061393",
+    "access_count": 0,
+    "tags": {}
+  },
+  "version": {
+    "version_id": "1.0.0",
+    "major": 1,
+    "minor": 0,
+    "patch": 0,
+    "parent_version": "",
+    "created_at": "2025-08-20T10:40:21.061395",
+    "change_description": "Initial version"
+  }
+}

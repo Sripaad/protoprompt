@@ -1,0 +1,35 @@
+{
+  "agent": {
+    "name": "coordinator",
+    "role": "manager",
+    "persona": "Coordinates between projects",
+    "prompts": {
+      "system": "",
+      "user": "",
+      "reasoning_template": "",
+      "action_template": ""
+    },
+    "metadata": {},
+    "created_at": 1755682821,
+    "agent_id": "coordinator_3196c693",
+    "capabilities": [],
+    "configuration": {}
+  },
+  "metadata": {
+    "storage_id": "coordinator_3196c693",
+    "storage_path": "test_context_storage/agents/coordinator_3196c693.json",
+    "stored_at": "2025-08-20T10:40:21.054888",
+    "last_accessed": "2025-08-20T10:40:21.054896",
+    "access_count": 0,
+    "tags": {}
+  },
+  "version": {
+    "version_id": "1.0.0",
+    "major": 1,
+    "minor": 0,
+    "patch": 0,
+    "parent_version": "",
+    "created_at": "2025-08-20T10:40:21.054898",
+    "change_description": "Initial version"
+  }
+}

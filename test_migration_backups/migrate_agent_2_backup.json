@@ -1,0 +1,13 @@
+{
+  "name": "migrate_agent_2",
+  "role": "writer",
+  "persona": "Content writer",
+  "prompts": {
+    "system": "Write clear and engaging content",
+    "user": "",
+    "reasoning_template": "Writing about: {input}",
+    "action_template": "Content: {output}"
+  },
+  "metadata": {},
+  "created_at": 1755683168
+}

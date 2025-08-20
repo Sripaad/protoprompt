@@ -1,0 +1,38 @@
+{
+  "agent": {
+    "name": "migrate_agent_1",
+    "role": "analyst",
+    "persona": "Data analyst",
+    "prompts": {
+      "system": "Analyze data and provide insights",
+      "user": "",
+      "reasoning_template": "Analyzing: {input}",
+      "action_template": "Analysis result: {output}"
+    },
+    "metadata": {},
+    "created_at": 1755683168,
+    "agent_id": "migrate_agent_1_0dddee03",
+    "capabilities": [
+      "analyze",
+      "analyze"
+    ],
+    "configuration": {}
+  },
+  "metadata": {
+    "storage_id": "migrate_agent_1_0dddee03",
+    "storage_path": "test_migration_storage/agents/migrate_agent_1_0dddee03.json",
+    "stored_at": "2025-08-20T10:46:08.867833",
+    "last_accessed": "2025-08-20T10:46:08.867839",
+    "access_count": 0,
+    "tags": {}
+  },
+  "version": {
+    "version_id": "1.0.0",
+    "major": 1,
+    "minor": 0,
+    "patch": 0,
+    "parent_version": "",
+    "created_at": "2025-08-20T10:46:08.867841",
+    "change_description": "Initial version"
+  }
+}
