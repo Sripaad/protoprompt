@@ -1,0 +1,32 @@
+# TensorZero Configuration for TinyContext
+
+# Functions define the tasks we're tackling
+[functions.tiny_reasoning]
+type = "chat"
+
+# Variant implementation for reasoning
+[functions.tiny_reasoning.variants.default]
+type = "chat_completion"
+model = "openai::gpt-5-chat"
+temperature = 0.6
+max_tokens = 512
+
+[functions.tiny_action]
+type = "chat"
+
+# Variant implementation for action generation
+[functions.tiny_action.variants.default]
+type = "chat_completion"
+model = "openai::gpt-5-chat"
+temperature = 0.7
+max_tokens = 384
+
+[functions.agent_selection]
+type = "chat"
+
+# Variant implementation for agent selection
+[functions.agent_selection.variants.default]
+type = "chat_completion"
+model = "openai::gpt-5-chat"
+temperature = 0.3
+max_tokens = 128

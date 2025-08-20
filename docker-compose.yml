@@ -1,0 +1,57 @@
+services:
+  clickhouse:
+    image: clickhouse/clickhouse-server:24.12-alpine
+    container_name: tensorzero_clickhouse
+    environment:
+      - CLICKHOUSE_USER=chuser
+      - CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT=1
+      - CLICKHOUSE_PASSWORD=chpassword
+    ports:
+      - "8123:8123"
+    volumes:
+      - clickhouse_data:/var/lib/clickhouse
+    healthcheck:
+      test: wget --spider --tries 1 http://chuser:chpassword@clickhouse:8123/ping
+      start_period: 30s
+      start_interval: 1s
+      timeout: 1s
+
+  gateway:
+    image: tensorzero/gateway
+    container_name: tensorzero_gateway
+    volumes:
+      - ./:/app/config:ro
+    command: --config-file /app/config/tensorzero.toml
+    environment:
+      - TENSORZERO_CLICKHOUSE_URL=http://chuser:chpassword@clickhouse:8123/tensorzero
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    ports:
+      - "3000:3000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      clickhouse:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  ui:
+    image: tensorzero/ui
+    container_name: tensorzero_ui
+    volumes:
+      - ./:/app/config:ro
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - TENSORZERO_CLICKHOUSE_URL=http://chuser:chpassword@clickhouse:8123/tensorzero
+      - TENSORZERO_GATEWAY_URL=http://gateway:3000
+    ports:
+      - "4000:4000"
+    depends_on:
+      clickhouse:
+        condition: service_healthy
+
+volumes:
+  clickhouse_data:

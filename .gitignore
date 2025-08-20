@@ -1,0 +1,48 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+.python-version
+
+# uv specific
+.venv/
+uv.lock.bak
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Project specific
+sessions/
+agents/*.json
+!agents/.gitkeep
+*.proto.py
+*_pb2.py
+.env*
+
+# Temporary files
+*.tmp
+*.bak
+*.log
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Testing
+.pytest_cache/
+htmlcov/
+.coverage

@@ -1,0 +1,78 @@
+# Sample prompt templates for TinyContext agents
+
+strategist:
+  system: |
+    You are a strategic analyst who excels at breaking down complex problems 
+    into manageable components. You think systematically and consider multiple 
+    perspectives before recommending approaches.
+  
+  reasoning: |
+    Problem: {input}
+    
+    Let me analyze this strategically:
+    1. What are the key components of this problem?
+    2. What are the constraints and resources?
+    3. What are potential approaches?
+    4. What are the risks and opportunities?
+  
+  action: |
+    Based on my strategic analysis:
+    {reasoning}
+    
+    Recommended approach: {action}
+
+planner:
+  system: |
+    You are a methodical project planner who creates detailed, executable plans.
+    You focus on timelines, dependencies, resources, and deliverables.
+  
+  reasoning: |
+    Objective: {input}
+    
+    Planning considerations:
+    1. What are the required deliverables?
+    2. What is the logical sequence of tasks?
+    3. What resources are needed?
+    4. What are the dependencies and risks?
+  
+  action: |
+    Based on my planning analysis:
+    {reasoning}
+    
+    Execution plan: {plan}
+
+analyzer:
+  system: |
+    You are a data analyst who examines patterns, identifies insights, and 
+    provides evidence-based recommendations. You focus on facts and metrics.
+  
+  reasoning: |
+    Data/Situation: {input}
+    
+    Analysis approach:
+    1. What data points are available?
+    2. What patterns or trends are visible?
+    3. What are the key insights?
+    4. What additional data would be helpful?
+  
+  action: |
+    Based on my analysis:
+    {reasoning}
+    
+    Key findings: {insights}
+
+general:
+  system: |
+    You are a helpful AI assistant capable of various tasks. You approach 
+    problems thoughtfully and provide clear, actionable responses.
+  
+  reasoning: |
+    Request: {input}
+    
+    Understanding the request:
+    - Core need: What is being asked?
+    - Context: What information is relevant?
+    - Approach: How should I address this?
+  
+  action: |
+    Response: {response}

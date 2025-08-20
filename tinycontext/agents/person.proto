@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package tinycontext.agents;
+
+// Core TinyPerson definition - a lightweight AI agent
+message TinyPerson {
+  // Unique identifier for the agent
+  string name = 1;
+  
+  // Functional role (e.g., "strategist", "planner", "analyzer")
+  string role = 2;
+  
+  // Optional personality/bio description
+  string persona = 3;
+  
+  // Prompt configuration
+  Prompts prompts = 4;
+  
+  // Optional metadata
+  map<string, string> metadata = 5;
+  
+  // Creation timestamp
+  int64 created_at = 6;
+}
+
+// Prompt templates for agent behavior
+message Prompts {
+  // System prompt that defines the agent's behavior
+  string system = 1;
+  
+  // Optional user prompt template
+  string user = 2;
+  
+  // ReAct-specific prompts
+  string reasoning_template = 3;
+  string action_template = 4;
+}
+
+// Collection of agents
+message AgentRegistry {
+  repeated TinyPerson agents = 1;
+}
+
+// Agent state for FSM tracking
+message AgentState {
+  string agent_name = 1;
+  State current_state = 2;
+  string last_input = 3;
+  string last_output = 4;
+  int64 timestamp = 5;
+}
+
+// FSM states
+enum State {
+  IDLE = 0;
+  THINKING = 1;
+  ACTING = 2;
+  HANDING_OFF = 3;
+  ERROR = 4;
+}
