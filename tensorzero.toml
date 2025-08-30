@@ -7,9 +7,9 @@ type = "chat"
 # Variant implementation for reasoning
 [functions.tiny_reasoning.variants.default]
 type = "chat_completion"
-model = "openai::gpt-4o-mini"
+model = "groq::openai/gpt-oss-120b"
 temperature = 0.6
-max_tokens = 512
+max_tokens = 2048
 
 [functions.tiny_action]
 type = "chat"
@@ -17,19 +17,19 @@ type = "chat"
 # Variant implementation for action generation
 [functions.tiny_action.variants.default]
 type = "chat_completion"
-model = "openai::gpt-4o-mini"
+model = "groq::openai/gpt-oss-120b"
 temperature = 0.7
-max_tokens = 384
+max_tokens = 2048
 
 [functions.agent_selection]
 type = "chat"
 
-# Variant implementation for agent selection
+# Variant implementation for agent selection  
 [functions.agent_selection.variants.default]
 type = "chat_completion"
-model = "openai::gpt-4o-mini"
+model = "groq::openai/gpt-oss-20b"
 temperature = 0.3
-max_tokens = 128
+max_tokens = 384
 
 [functions.tiny_search]
 type = "chat"
@@ -37,7 +37,7 @@ type = "chat"
 # Variant implementation for search
 [functions.tiny_search.variants.default]
 type = "chat_completion"
-model = "openai::gpt-4o-mini"
+model = "groq::openai/gpt-oss-120b"
 temperature = 0.6
 max_tokens = 2048
 
@@ -48,7 +48,7 @@ type = "chat"
 # Route queries to appropriate RAG agents
 [functions.rag_router.variants.default]
 type = "chat_completion"
-model = "openai::gpt-4o-mini"
+model = "groq::openai/gpt-oss-120b"
 temperature = 0.3
 max_tokens = 256
 
@@ -58,9 +58,9 @@ type = "chat"
 # Strategic thinking and planning for RAG
 [functions.rag_think.variants.default]
 type = "chat_completion"
-model = "openai::gpt-4o-mini"
+model = "groq::openai/gpt-oss-120b"
 temperature = 0.5
-max_tokens = 512
+max_tokens = 2048
 
 [functions.rag_synthesize]
 type = "chat"
@@ -68,6 +68,6 @@ type = "chat"
 # Synthesize final answers from gathered information
 [functions.rag_synthesize.variants.default]
 type = "chat_completion"
-model = "openai::gpt-4o-mini"
+model = "groq::openai/gpt-oss-120b"
 temperature = 0.4
 max_tokens = 1024

@@ -40,8 +40,8 @@ class AsyncTensorZeroClient:
         self.gateway: Optional[AsyncTensorZeroGateway] = None
         self.initialized = False
         
-        # Default model (fallback to gpt-4o-mini if gpt-5 not available)
-        self.default_model = os.getenv("TENSORZERO_MODEL", "openai::gpt-4o-mini")
+        # Default model (Groq for high-speed inference)
+        self.default_model = os.getenv("TENSORZERO_MODEL", "groq")
         
         # Function to model mapping
         self.function_models = {

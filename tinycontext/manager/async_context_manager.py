@@ -106,9 +106,10 @@ class AsyncTinyContextManager:
         """
         await self.initialize()
         
-        # Generate trace ID if not provided
+        # Generate trace ID if not provided (must be UUID v7 for TensorZero)
         if not trace_id:
-            trace_id = f"trace_{datetime.now().timestamp()}"
+            import uuid_utils
+            trace_id = str(uuid_utils.uuid7())
         
         # Initialize execution trace
         trace = AsyncExecutionTrace(

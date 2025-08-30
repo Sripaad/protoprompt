@@ -60,7 +60,46 @@ Think of it as "Kubernetes for AI Agents" - orchestrating fleets of specialized 
 
 ## 🚀 Quick Start
 
-### Installation
+### Simple API (Recommended for beginners)
+
+```bash
+# Install with dependencies
+pip install -e .
+pip install openai
+
+# Set your Groq API key for high-speed inference (preferred)
+export GROQ_API_KEY=your-groq-api-key-here
+# Or use OpenAI as fallback  
+export OPENAI_API_KEY=your-openai-api-key-here
+
+# Zero-config usage
+python -c "
+from tinycontext.simple import quick_start
+import asyncio
+
+async def demo():
+    agent = quick_start()
+    result = await agent.run('Hello world! What can you do?')
+    print(result['output'])
+
+asyncio.run(demo())
+"
+```
+
+**Or use the CLI:**
+
+```bash
+# Interactive setup
+tinycontext setup
+
+# Quick execution
+tinycontext quick "Analyze this data" --data '{"sales": [100, 200, 300]}'
+
+# Interactive demo
+tinycontext demo
+```
+
+### Full Framework Installation
 
 ```bash
 # Clone the repository
@@ -80,8 +119,9 @@ pip install -e .
 ```bash
 # Create .env file
 cat > .env << EOF
-OPENAI_API_KEY=your-api-key-here
-TENSORZERO_MODEL=openai::gpt-4o-mini
+GROQ_API_KEY=your-groq-api-key-here
+OPENAI_API_KEY=your-openai-api-key-here
+TENSORZERO_MODEL=groq
 ENABLE_OBSERVABILITY=true
 EOF
 ```
@@ -97,7 +137,53 @@ docker-compose up -d
 
 ## 📚 Usage Examples
 
-### 1. Basic Agent Execution
+### 🎯 Simple API Examples
+
+#### Context Engineering Showcase
+
+```python
+from tinycontext.simple import ContextAgent
+
+# Research Assistant with Context Selection
+agent = ContextAgent(name="researcher")
+await agent.initialize()
+
+# Build knowledge base (Write Context)
+await agent.add_context("ai_safety", "AI safety research focuses on...", ["ai", "safety"])
+await agent.add_context("quantum_computing", "Quantum computing uses...", ["quantum", "tech"])
+
+# Query with context selection (Select Context)
+result = await agent.run(
+    "What are the connections between AI safety and quantum computing?",
+    context_strategy="select"  # Automatically selects relevant contexts
+)
+
+# Long conversation with compression (Compress Context) 
+for query in ["What is AI safety?", "How does quantum computing work?", "What are the risks?"]:
+    result = await agent.run(query, context_strategy="compress")
+
+# Isolated analysis (Isolate Context)
+await agent.create_isolated_context("security_analysis", {
+    "threats": {"type": list}, 
+    "risk_level": {"type": str}
+})
+result = await agent.run("Analyze security implications", context_strategy="isolate")
+```
+
+#### One-Line Task Execution
+
+```python
+from tinycontext.simple import run_quick_task
+
+# Instant results
+result = await run_quick_task("Summarize this text", data={"text": "Long document..."})
+analysis = await run_quick_task("Find patterns", data={"numbers": [1,1,2,3,5,8]})
+code_review = await run_quick_task("Review this code for security issues", data={"code": "..."})
+```
+
+### 🏗️ Full Framework Examples  
+
+#### 1. Multi-Agent Orchestration
 
 ```python
 import asyncio
@@ -122,7 +208,7 @@ async def main():
 asyncio.run(main())
 ```
 
-### 2. Multi-Agent Collaboration with Shared Context
+#### 2. Multi-Agent Collaboration with Shared Context
 
 ```python
 from tinycontext.context.context_manager import ContextManager
@@ -168,7 +254,7 @@ async def collaborative_task():
     )
 ```
 
-### 3. RAG Pipeline (Emerging from Agents)
+#### 3. RAG Pipeline (Emerging from Agents)
 
 ```python
 from tinycontext.orchestration.rag_orchestrator import RAGOrchestrator
@@ -189,7 +275,7 @@ async def rag_query():
     print(f"Confidence: {result['confidence']:.0%}")
 ```
 
-### 4. Agent Persistence and Versioning
+#### 4. Agent Persistence and Versioning
 
 ```python
 from tinycontext.agents.proto_factory import ProtoFactory
@@ -222,7 +308,7 @@ async def agent_persistence():
     exported = await factory.export_agent("data_analyst", format="json")
 ```
 
-### 5. Workflow Execution
+#### 5. Workflow Execution
 
 ```python
 from tinycontext.workflows.workflow_executor import WorkflowExecutor
@@ -472,9 +558,17 @@ ruff check tinycontext/
 
 ## 📚 Documentation
 
-- [CHECKPOINT.md](CHECKPOINT.md) - Detailed architecture and design decisions
+- **[Simple API Guide](docs/SIMPLE_API.md)** - Complete guide to TinyContext Simple with context engineering
+- **[CHECKPOINT.md](CHECKPOINT.md)** - Detailed architecture and design decisions
+- **[Examples](examples/)** - Usage examples including Simple API demos
 - [API Reference](docs/api.md) - Complete API documentation (coming soon)
-- [Examples](examples/) - More usage examples
+- [12-Factor Agent Mapping](docs/12_FACTOR_AGENT.md) - How TinyContext aligns with 12-factor principles
+- [MVP Plan](docs/MVP_PLAN.md) - Scope, deliverables, and acceptance criteria for the first release
+
+### Troubleshooting
+- Ensure Python 3.11+ and pip/uv are installed
+- Create a .env from .env.example and set OPENAI_API_KEY
+- If observability services are not running, set use_embedded=True for AsyncTensorZeroClient or run docker-compose up -d
 
 ## 🗺️ Roadmap
 

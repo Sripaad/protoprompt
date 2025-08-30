@@ -227,10 +227,21 @@ What approach should you take?
         """
         # Use agent's action template if available
         if agent.prompts.action_template:
-            return agent.prompts.action_template.format(
-                reasoning=reasoning,
-                action="[determine action]"
-            )
+            try:
+                # Provide multiple variable names for template flexibility
+                template_vars = {
+                    'reasoning': reasoning,
+                    'action': "[determine action]",
+                    'insights': reasoning,  # Map insights to reasoning
+                    'analysis': reasoning,  # Map analysis to reasoning  
+                    'output': reasoning,    # Map output to reasoning
+                    'input': reasoning      # Map input to reasoning
+                }
+                return agent.prompts.action_template.format(**template_vars)
+            except KeyError as e:
+                # If template has unexpected variables, fall back to default
+                print(f"Warning: Action template contains unexpected variable {e}, using default prompt")
+                pass
         
         # Default action prompt
         prompt = f"""
